@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+  <script>
+    let playerWins = 0,
+        computerWins = 0;
+    const game = () => {
+      for(let i = 0; i < 5; i++){
+      const 
+      random = Math.floor(Math.random() * Math.floor(3)),
+      weapon = [
+        { // Rock
+          type: "Rock",
+          win: "Scissors",
+          lose: "Paper"
+        },
+        { // Paper
+          type: "Paper",
+          win: "Rock",
+          lose: "Scissors"
+        },
+        { // Scissors
+          type: "Scissors",
+          win: "Paper",
+          lose: "Rock"
+        }
+      ],
+      play = (p,c) => {
+        const upperCaseLetter = p.split('')[0].toUpperCase(),
+              lowerCaseLetter = p.split('')[0],
+              player = p.replace(lowerCaseLetter, upperCaseLetter),
+              pWin = () => {
+                playerWins++;
+                alert(`Player: ${playerWins} | Computer: ${computerWins} \n You Win!! ${player} beats ${c.type}`);
+              },
+              cWin = () => {
+                computerWins++;
+                alert(`Player: ${playerWins} | Computer: ${computerWins} \n You Lose!! ${c.type} beats ${player}`);
+              }; 
+        return player === c.type ? alert("DRAW") : player === c.lose ? pWin() : cWin()
+      };
+      let computerSelection = weapon[random],
+          playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+          if(playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors"){
+            do {
+              playerSelection = prompt("Please type 'rock', 'paper', or 'scissors' (not case sensitive)");
+            } while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors");
+            play(playerSelection, computerSelection);
+          } else {
+            play(playerSelection, computerSelection);
+          }
+    }
+
+    playerWins > computerWins ? alert(`Player Wins the game!! Player: ${playerWins} | Computer: ${computerWins}`) : 
+    computerWins > playerWins ? alert(`Computer Wins the game!! Player: ${playerWins} | Computer: ${computerWins}`) :
+    alert(`It's a tie!! Player: ${playerWins} | Computer: ${computerWins}`);
+  };
+
+  game();
+
+  let playAgain = prompt("Would you like to play again (yes/no)?");
+  playAgain.toLowerCase() === "yes" ? game() : alert("Your momma must be proud...");
+    
+  </script>
+</body>
+</html>
